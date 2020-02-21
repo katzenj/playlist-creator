@@ -1,0 +1,57 @@
+html, body {
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+  min-height: 100%;
+  padding: 0;
+  height: 100%;
+}
+
+#artists-input-label {
+  /* Width of the playlist title input. Need to fix with JS. */
+  width: 108px;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input_container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  width: 60%;
+}
+
+.submit_button {
+  background-color: #485665;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  margin-top: 16px;
+  text-decoration: none;
+  transition: all ease 0.5s;
+  width: 180px;
+}
+
+.submit_button:active {
+  transform: translateY(4px);
+}
+
+.submit_button:hover {
+  background-color: white;
+  border: 2px solid #485665;
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 0px 0px 0 rgba(0,0,0,0.19);
+  color: #485665;
+}
+
