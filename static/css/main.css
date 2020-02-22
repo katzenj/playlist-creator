@@ -29,7 +29,7 @@ html, body {
   width: 100%;
 }
 
-.input_container {
+.input-container {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,11 @@ html, body {
 
 .input-group-prepend {
   border-radius: 2px;
+}
+
+.playlist-iframe {
+  border-radius: 4px;
+  margin-top: 24px;
 }
 
 .playlist-spinner {
@@ -51,7 +56,7 @@ html, body {
   width: 48px;
 }
 
-.submit_button,.spotify_login {
+.submit-button,.spotify-login {
   background-color: #485665;
   border: none;
   border-radius: 8px;
@@ -66,11 +71,11 @@ html, body {
   width: 180px;
 }
 
-.submit_button:active {
+.submit-button:active {
   transform: translateY(4px);
 }
 
-.submit_button:hover {
+.submit-button:hover {
   background-color: white;
   border: 2px solid #485665;
   box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 0px 0px 0 rgba(0,0,0,0.19);

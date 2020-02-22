@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <form class="input_container" action="{{ url_for('submit_artists_data') }}" method="post">
+      <form class="input-container" action="{{ url_for('submit_artists_data') }}" method="post">
         <!-- Playlist Title Group -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -39,14 +39,14 @@
           <input type="text" class="form-control" name="artists" id="artists-input" required placeholder="Justin Bieber, Wiinston" aria-label="Playlist Title" aria-describedby="artists-input-label">
         </div>
 
-        <button class="submit_button" type="submit"><span>Generate Playlist</span></button>
+        <button class="submit-button" type="submit"><span>Generate Playlist</span></button>
       </form>
       
       <form action="{{ url_for('spotify_login') }}">
-        <button class="spotify_login" type="submit" action="{{ url_for('spotify_login') }}"><span>Test Auth</span></button>
+        <button class="spotify-login" type="submit" action="{{ url_for('spotify_login') }}"><span>Test Auth</span></button>
       </form>
-        {% if playlist_url %}
-      <iframe class="playlist-iframe" src="{{ playlist_url }}" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      {% if playlist_url %}
+        <iframe class="playlist-iframe" src="{{ playlist_url }}" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       {% endif %}
     </div>
   </body>
