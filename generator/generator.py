@@ -1,14 +1,17 @@
 import base64
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 import json
 import os
-
 import requests
-
-from .secrets import spotify_client_id, spotify_client_secret, spotify_oauth_token, spotify_user_id
 
 class PlaylistGenerator:
     def __init__(self):
+        load_dotenv()
+        self._spotify_client_id = os.getenv('SPOTIFY_CLIENT_ID')
+        self._spotify_client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
+        self._spotify_user_id = os.getenv('SPOTIFY_USER_ID')
+        self._spotify_oauth_token = os.getenv('SPOTIFY_OAUTH_TOKEN')
         self._expiration_time = None
         self._access_token = None
 
@@ -23,7 +26,7 @@ class PlaylistGenerator:
             'grant_type': 'client_credentials'
         }
 
-        auth_header = base64.b64encode((spotify_client_id + ':' + spotify_client_secret).encode('ascii'))
+        auth_header = base64.b64encode((self._spotify_client_id + ':' + self._spotify_client_secret).encode('ascii'))
         headers = {'Authorization': 'Basic {}'.format(auth_header.decode('ascii'))}
 
         response = requests.post(url, data=payload, headers=headers)
@@ -37,13 +40,13 @@ class PlaylistGenerator:
 
     def get_spotify_auth_url(self):
         scope = 'playlist-modify-public playlist-modify-private' 
-        url = 'https://accounts.spotify.com/authorize/?response_type={}&client_id={}&scope={}&redirect_uri={}'.format('code', spotify_client_id, scope, 'localhost:5000/callback/')
+        url = 'https://accounts.spotify.com/authorize/?response_type={}&client_id={}&scope={}&redirect_uri={}'.format('code', self._spotify_client_id, scope, 'localhost:5000/callback/')
         return url
 
 
     def create_playlist(self, name, desc=None, public=False):
         # type: (str, Optional[str], bool) -> str
-        url = 'https://api.spotify.com/v1/users/{}/playlists'.format(spotify_user_id)
+        url = 'https://api.spotify.com/v1/users/{}/playlists'.format(self._spotify_user_id)
         access_token = self.get_access_token()
 
         body = json.dumps({
@@ -56,11 +59,10 @@ class PlaylistGenerator:
             data=body,
             headers = {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer {}'.format(spotify_oauth_token)
+                'Authorization': 'Bearer {}'.format(self._spotify_oauth_token)
             }
         )
         response_json = response.json()
-        print(response_json)
         return response_json['id']
 
 
@@ -81,7 +83,7 @@ class PlaylistGenerator:
             data=body_json,
             headers = {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer {}'.format(spotify_oauth_token)
+                'Authorization': 'Bearer {}'.format(self._spotify_oauth_token)
             }
         )
 
@@ -93,7 +95,7 @@ class PlaylistGenerator:
         response = requests.get(
             url,
             headers = {
-                'Authorization': 'Bearer {}'.format(spotify_oauth_token)
+                'Authorization': 'Bearer {}'.format(self._spotify_oauth_token)
             }
         )
         response_json = response.json()
@@ -110,7 +112,7 @@ class PlaylistGenerator:
         response = requests.get(
             url,
             headers = {
-                'Authorization': 'Bearer {}'.format(spotify_oauth_token)
+                'Authorization': 'Bearer {}'.format(self._spotify_oauth_token)
             }
         )
         response_json = response.json()
