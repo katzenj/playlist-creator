@@ -1,4 +1,4 @@
-# Playlist Generator
+# Playlist Creator
 
 ## What is this?
 - Honestly, I just wanted to mess around a bit with python, flask, and the Spotify API.

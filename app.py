@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 
 from generator.generator import PlaylistGenerator
 
@@ -13,6 +13,7 @@ def create_playlist():
 
 @app.route('/callback/')
 def callback():
+    gen.set_code(request.args.get('code'))
     return render_template('create_playlist.html')
 
 
@@ -28,9 +29,19 @@ def submit_artists_data():
     playlist_title: str = request.form.get('playlist-title') or 'New Playlist'
 
     if artists_input is not None:
-        id: str = gen.create_playlist(playlist_title)
-        gen.add_songs_to_playlist(id, artists_input.split(','))
-    return redirect('/')
+        playlist_id, user_id = gen.create_playlist(playlist_title)
+        gen.add_songs_to_playlist(playlist_id, artists_input.split(','))
+
+        return redirect(url_for('view_playlist', playlist_id=playlist_id, user_id=user_id))
+
+    return redirect(url_for('create_playlist'))
+
+
+@app.route('/view_playlist/<user_id>/<playlist_id>')
+def view_playlist(playlist_id, user_id):
+    # type: (str) -> ()
+    playlist_url = 'https://open.spotify.com/embed/user/{}/playlist/{}'.format(user_id, playlist_id)
+    return render_template('create_playlist.html', playlist_url=playlist_url)
 
 
 if __name__ == '__main__':

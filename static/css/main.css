@@ -21,6 +21,14 @@ html, body {
   width: 100%;
 }
 
+#loading-spinner {
+  display: none;
+  height: 100%;
+  justify-content: center;
+  margin: 40px auto;
+  width: 100%;
+}
+
 .input_container {
   align-items: center;
   display: flex;
@@ -33,7 +41,17 @@ html, body {
   border-radius: 2px;
 }
 
-.submit_button {
+.playlist-spinner {
+  border-radius: 4px;
+  margin-top: 32px;
+}
+
+.spinner-border {
+  height: 48px;
+  width: 48px;
+}
+
+.submit_button,.spotify_login {
   background-color: #485665;
   border: none;
   border-radius: 8px;
