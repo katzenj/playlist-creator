@@ -43,7 +43,7 @@ html, body {
 
 .playlist-iframe {
   border-radius: 4px;
-  margin-top: 24px;
+  margin: 24px auto;
 }
 
 .playlist-spinner {

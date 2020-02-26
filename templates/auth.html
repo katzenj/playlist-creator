@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form action="{{ url_for('spotify_login') }}">
+    <button class="spotify-login" type="submit" action="{{ url_for('spotify_login') }}"><span>Authorize Spotify</span></button>
+  </form>
+{% endblock %}

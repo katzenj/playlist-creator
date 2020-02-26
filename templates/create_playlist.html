@@ -1,54 +1,33 @@
-<!doctype html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Playlist Generator</title>
-    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="header">Generate a Playlist!</h1>
-
-      <div class="text-center" id="loading-spinner">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-
-      <form class="input-container" action="{{ url_for('submit_artists_data') }}" method="post">
-        <!-- Playlist Title Group -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="title-input-label">Playlist title</span>
-          </div>
-          <input type="text" class="form-control" name="playlist-title" id="playlist-title-input" placeholder="2000s R&B" aria-label="Playlist Title" aria-describedby="title-input-label">
-        </div>
-
-        <!-- Artist Input Group -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="artists-input-label">Artists</span>
-          </div>
-          <input type="text" class="form-control" name="artists" id="artists-input" required placeholder="Justin Bieber, Wiinston" aria-label="Playlist Title" aria-describedby="artists-input-label">
-        </div>
-
-        <button class="submit-button" type="submit"><span>Generate Playlist</span></button>
-      </form>
-      
-      <form action="{{ url_for('spotify_login') }}">
-        <button class="spotify-login" type="submit" action="{{ url_for('spotify_login') }}"><span>Test Auth</span></button>
-      </form>
-      {% if playlist_url %}
-        <iframe class="playlist-iframe" src="{{ playlist_url }}" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      {% endif %}
+{% extends 'base.html' %}
+{% block content %}
+  <div class="text-center" id="loading-spinner">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
-  </body>
-</html>
+  </div>
 
+  <form class="input-container" action="{{ url_for('submit_artists_data') }}" method="post">
+    <!-- Playlist Title Group -->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="title-input-label">Playlist title</span>
+      </div>
+      <input type="text" class="form-control" name="playlist-title" id="playlist-title-input" placeholder="2000s R&B" aria-label="Playlist Title" aria-describedby="title-input-label">
+    </div>
+
+    <!-- Artist Input Group -->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="artists-input-label">Artists</span>
+      </div>
+      <input type="text" class="form-control" name="artists" id="artists-input" required placeholder="Justin Bieber, Wiinston" aria-label="Playlist Title" aria-describedby="artists-input-label">
+    </div>
+
+    <button class="submit-button" type="submit"><span>Generate Playlist</span></button>
+  </form>
+  
+
+  {% if playlist_url %}
+    <iframe class="playlist-iframe" src="{{ playlist_url }}" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  {% endif %}
+{% endblock %}
