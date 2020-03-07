@@ -41,9 +41,13 @@ html, body {
   border-radius: 2px;
 }
 
+.playlist-group {
+  display: flex;
+}
+
 .playlist-iframe {
   border-radius: 4px;
-  margin: 24px auto;
+  margin: 24px 4px;
 }
 
 .playlist-spinner {

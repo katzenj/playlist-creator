@@ -5,10 +5,12 @@ from generator.generator import PlaylistGenerator
 app = Flask(__name__)
 
 gen = PlaylistGenerator()
+playlists = []
+NUM_PLAYLISTS = 3
 
 @app.route('/')
 def create_playlist():
-    return render_template('create_playlist.html')
+    return render_template('auth.html')
 
 
 @app.route('/callback/')
@@ -41,7 +43,9 @@ def submit_artists_data():
 def view_playlist(playlist_id, user_id):
     # type: (str) -> ()
     playlist_url = 'https://open.spotify.com/embed/user/{}/playlist/{}'.format(user_id, playlist_id)
-    return render_template('create_playlist.html', playlist_url=playlist_url)
+    if playlist_url not in playlists:
+        playlists.append(playlist_url)
+    return render_template('create_playlist.html', playlists=playlists[-1 * NUM_PLAYLISTS:])
 
 
 if __name__ == '__main__':

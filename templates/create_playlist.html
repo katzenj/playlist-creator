@@ -20,14 +20,15 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="artists-input-label">Artists</span>
       </div>
-      <input type="text" class="form-control" name="artists" id="artists-input" required placeholder="Justin Bieber, Wiinston" aria-label="Playlist Title" aria-describedby="artists-input-label">
+      <input type="text" class="form-control" name="artists" id="artists-input" placeholder="Justin Bieber, Wiinston" aria-label="Artists Input" aria-describedby="artists-input-label">
     </div>
 
     <button class="submit-button" type="submit"><span>Generate Playlist</span></button>
   </form>
   
-
-  {% if playlist_url %}
-    <iframe class="playlist-iframe" src="{{ playlist_url }}" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-  {% endif %}
+  <div class="playlist-group">
+    {% for playlist_url in playlists %}
+      <iframe class="playlist-iframe" src="{{ playlist_url }}" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    {% endfor %}
+  </div>
 {% endblock %}
