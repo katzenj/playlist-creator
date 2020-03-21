@@ -1,0 +1,42 @@
+.input_group {
+  height: 40px;
+  left: 50%;
+  margin: 16px auto;
+  position: relative;
+  transform: translate(-50%);
+  width: 400px;
+}
+
+.label {
+  box-sizing: border-box;
+  border: none;
+  border-bottom: solid 2px black;
+  border-right: none;
+  border-bottom-left-radius: 2px;
+  /* background-color: burlywood; */
+  float: left;
+  font-size: 14px;
+  height: 100%;
+  padding: 8px;
+  padding-top: 10px;
+  text-align: center;
+  width: 30%;
+}
+
+.input {
+  /* background-color: chocolate; */
+  border: none;
+  border-bottom: solid 2px black;
+  border-bottom-right-radius: 2px;
+  box-sizing: border-box;
+  font-size: 14px;
+  height: 100%;
+  padding-left: 8px;
+  position: absolute;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: black;
+  font-size: 14px;
+}
