@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+
 import { InputGroup } from 'src/components/InputGroup';
 import { Button } from 'src/components/Button';
 
@@ -9,6 +12,7 @@ export const GeneratorPage = () => {
   const [artists, setArtists] = useState(null);
   const [songs, setSongs] = useState(null);
   const [playlistData, setPlaylistData] = useState({ userId: null, playlistIds: [] });
+  const [isLoading, setIsLoading] = useState(false);
 
   const getUrlParameter = (name) => {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -33,6 +37,7 @@ export const GeneratorPage = () => {
   };
 
   const createPlaylist = async (createPlaylistData) => {
+    setIsLoading(true);
     const url = '/api/submit_playlist_data';
     const options = {
       method: 'POST',
@@ -52,6 +57,7 @@ export const GeneratorPage = () => {
       userId: json.response.user_id,
       playlistIds
     });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -68,25 +74,34 @@ export const GeneratorPage = () => {
     <div>
       <div className={styles.content_container}>
         <h1 className={styles.header}>Generate a Playlist!</h1>
-        <div className={styles.playlist_inputs_container}>
-          <InputGroup
-            name="playlist-title"
-            placeholder="Playlist Title"
-            onChange={setPlaylistTitle}
-          />
-          <InputGroup
-            name="artists"
-            placeholder="Artists"
-            onChange={setArtists}
-          />
-          <InputGroup name="songs" placeholder="Songs" onChange={setSongs} />
-        </div>
-        <Button
-          buttonText="Create a Playlist"
-          onClick={() =>
-            createPlaylist({ playlist_title: playlistTitle, artists, songs })
-          }
-        />
+        {isLoading ? (
+          <div className={styles.spinner_container}>
+            <FontAwesomeIcon className={styles.spinner} icon={faCircleNotch} spin size="4x" />
+          </div>
+        ) : (
+          <>
+            <div className={styles.playlist_inputs_container}>
+              <InputGroup
+                name="playlist-title"
+                placeholder="Playlist Title"
+                onChange={setPlaylistTitle}
+              />
+              <InputGroup
+                name="artists"
+                placeholder="Artists"
+                onChange={setArtists}
+              />
+              <InputGroup name="songs" placeholder="Songs" onChange={setSongs} />
+            </div>
+            <Button
+              buttonText="Create a Playlist"
+              disabled={artists === null || artists === ''}
+              onClick={() =>
+                createPlaylist({ playlist_title: playlistTitle, artists, songs })
+              }
+            />
+          </>
+        )}
         <div className={styles.embed_container}>
           {playlistData.playlistIds.length > 0 && playlistData.playlistIds.map((id) => (
             <iframe

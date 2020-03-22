@@ -24,6 +24,15 @@ body, input {
   text-align: center;
 }
 
+.spinner {
+  color: #f7a072;
+}
+
+.spinner_container {
+  margin-top: 64px;
+  text-align: center;
+}
+
 .spotify_embed {
   background: #282828;
   border-radius: 10px;
