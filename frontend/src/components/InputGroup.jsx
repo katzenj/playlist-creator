@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './main.css?module';
 
-export const InputGroup = ({ name, placeholder }) => (
+export const InputGroup = ({ name, placeholder, onChange }) => (
   <div className={styles.input_group} id={`${name}-container`}>
     <input
       className={styles.input}
@@ -12,11 +12,15 @@ export const InputGroup = ({ name, placeholder }) => (
       placeholder={placeholder}
       aria-label={placeholder}
       aria-describedby="title-input-label"
+      onChange={(e) => {
+        onChange(e.target.value);
+      }}
     />
   </div>
 );
 
 InputGroup.propTypes = {
-  name: PropTypes.string,
-  placeholder: PropTypes.string
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired
 };

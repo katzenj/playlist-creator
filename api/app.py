@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, jsonify, render_template, request, redirect, url_for
+import time
 
 from generator.generator import PlaylistGenerator
 
@@ -18,6 +19,10 @@ def callback():
     gen.set_code(request.args.get('code'))
     return render_template('create_playlist.html')
 
+@app.route('/spotify_login_2', methods=['GET'])
+def spotify_login_2():
+    response = gen.get_spotify_auth_url()
+    return jsonify({'spotify_url': response})
 
 @app.route('/spotify_login', methods=['GET'])
 def spotify_login():

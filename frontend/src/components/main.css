@@ -10,10 +10,9 @@
 .label {
   box-sizing: border-box;
   border: none;
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px #0fa3b1;
   border-right: none;
   border-bottom-left-radius: 2px;
-  /* background-color: burlywood; */
   float: left;
   font-size: 14px;
   height: 100%;
@@ -24,9 +23,8 @@
 }
 
 .input {
-  /* background-color: chocolate; */
   border: none;
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px #0fa3b1;
   border-bottom-right-radius: 2px;
   box-sizing: border-box;
   font-size: 14px;
@@ -39,4 +37,40 @@
 .input::placeholder {
   color: black;
   font-size: 14px;
+}
+
+.button_container {
+  margin: 32px 0;
+}
+
+.button {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  background: #0fa3b1;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 500;
+  height: 100%;
+  text-decoration: none;
+  transition: background 250ms ease-in-out,
+  transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+}
+
+.button:hover,
+.button:focus {
+  background: #0b7781;
+}
+
+.button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.button:active {
+  transform: scale(0.99);
 }

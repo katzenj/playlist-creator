@@ -4,6 +4,14 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   devtool: 'inline-source-map',
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        pathRewrite: {'^/api' : ''}
+      }
+    }
+  },
   output: {
     path: path.join(__dirname, 'dist/'),
     publicPath: '/',
