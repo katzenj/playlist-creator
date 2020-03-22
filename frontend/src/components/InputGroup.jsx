@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './main.css?module';
+import styles from 'src/components/main.css?module';
 
 export const InputGroup = ({ name, placeholder, onChange }) => (
   <div className={styles.input_group} id={`${name}-container`}>

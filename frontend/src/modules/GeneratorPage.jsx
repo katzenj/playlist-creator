@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { InputGroup } from '../components/InputGroup';
-import { Button } from '../components/Button';
+import { InputGroup } from 'src/components/InputGroup';
+import { Button } from 'src/components/Button';
 
-import styles from '../styles/main.css?module';
+import styles from 'src/modules/main.css?module';
 
 export const GeneratorPage = () => {
   const [playlistTitle, setPlaylistTitle] = useState(null);

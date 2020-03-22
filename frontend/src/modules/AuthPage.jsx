@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Button } from '../components/Button';
-import styles from '../styles/main.css?module';
+import { Button } from 'src/components/Button';
+import styles from 'src/modules/main.css?module';
 
 export const AuthPage = () => {
   const cookie = 'test_cookie_1';

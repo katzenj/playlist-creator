@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { AuthPage } from './AuthPage';
-import { GeneratorPage } from './GeneratorPage';
+import { AuthPage } from 'src/modules/AuthPage';
+import { GeneratorPage } from 'src/modules/GeneratorPage';
 
 const App = () => {
   return (
