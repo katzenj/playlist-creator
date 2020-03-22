@@ -18,7 +18,7 @@ def _create_cookie(length: int=16):
 
 
 @app.route('/api/spotify_login', methods=['GET'])
-def new_spotify_login():
+def spotify_login():
     spotify_url = gen.get_spotify_auth_url()
     spotify_cookie = _create_cookie(length=16)
     session['spotify_cookie'] = spotify_cookie
@@ -26,14 +26,14 @@ def new_spotify_login():
 
 
 @app.route('/api/set_spotify_code', methods=['POST'])
-def new_set_spotify_code():
+def set_spotify_code():
     data = request.json;
     gen.set_code(data['spotify_code'])
     return jsonify({'status_code': 200, 'message': 'Successfully set code.'})
 
 
 @app.route('/api/submit_playlist_data', methods=['POST'])
-def new_submit_playlist_data():
+def submit_playlist_data():
     data = request.json
     print(data)
     artists_input: str = data['artists']
