@@ -1,7 +1,7 @@
 .input_group {
   height: 40px;
   left: 50%;
-  margin: 16px auto;
+  margin: 16px 0;
   position: relative;
   transform: translate(-50%);
   width: 400px;

@@ -12,7 +12,7 @@ class PlaylistGenerator:
         load_dotenv()
         client_id = os.getenv('SPOTIFY_CLIENT_ID')
         client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
-        redirect_uri = 'http://localhost:5000/callback/'
+        redirect_uri = 'http://localhost:8080/spotify_callback'
         scope = 'playlist-modify-public playlist-modify-private'
         self._spotify_user_id = os.getenv('SPOTIFY_USER_ID')
 

@@ -15,6 +15,18 @@ body, input {
   transform: translate(-50%);
 }
 
+.embed_container {
+  text-align: center;
+  width: 1000px;
+}
+
 .header {
   text-align: center;
+}
+
+.spotify_embed {
+  background: #282828;
+  border-radius: 10px;
+  margin: 0 8px 60px 8px;
+  transition: opacity 0.125s;
 }
